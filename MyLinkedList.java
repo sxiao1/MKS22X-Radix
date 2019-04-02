@@ -32,6 +32,25 @@ public class MyLinkedList<T>{
     newstr += getNode(i).getValue();
     return newstr + "]";
   }
+  public boolean add(T newNode){
+    Node add = new Node(newNode);
+    if(size() == 0){
+      start = add;
+      end = add;
+    }
+    else if(size() == 1){
+      end = add;
+      start.setNext(add);
+      add.setPrev(start);
+    }
+    else{
+      add.setPrev(end);
+      end.setNext(add);
+      end = add;
+    }
+    size++;
+    return true;
+  }
   private class Node{
     private T data;
     private Node next;
