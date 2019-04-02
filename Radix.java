@@ -28,5 +28,8 @@ public class Radix{
       int temp = data[i] % 10;
       tempdata[i] = temp;
     }
+    for(int i = 0; i < data.length; i++){
+      //data[i] = bucket.removeFront();
+    }
   }
 }
