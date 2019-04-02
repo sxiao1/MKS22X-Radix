@@ -70,6 +70,22 @@ public class MyLinkedList<T>{
     }
     size++;
   }
+  public void extend(MyLinkedList<T> other){
+    if(other.size() == 0){
+      return;
+    }
+    if(size() == 0){
+      start = other.start;
+    }
+    else{
+      end.setNext(other.start);
+      other.start.setPrev(end);
+    }
+    end = other.end;
+    size += other.size();
+    other.clear();
+    return;
+  }
   private class Node{
     private T data;
     private Node next;
