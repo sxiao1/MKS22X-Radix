@@ -51,6 +51,25 @@ public class MyLinkedList<T>{
     size++;
     return true;
   }
+  public void add(int index, T num){
+    Node add = new Node(num);
+    if(index == size()){
+      add(num);
+      return;
+    }
+    else if(index == 0){
+      add.setNext(start);
+      start.setPrev(add);
+      start = add;
+    }
+    else{
+      add.setNext(getNode(index));
+      add.setPrev(getNode(index - 1));
+      getNode(index - 1).setNext(add);
+      getNode(index).setPrev(add);
+    }
+    size++;
+  }
   private class Node{
     private T data;
     private Node next;
