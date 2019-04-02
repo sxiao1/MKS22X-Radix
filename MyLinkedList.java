@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class MyLinkedList<T>{
   private int size;
   private Node start;
@@ -85,6 +86,23 @@ public class MyLinkedList<T>{
     size += other.size();
     other.clear();
     return;
+  }
+  public T removeFront(){
+    if(size() == 0){
+      throw new IndexOutOfBoundsException("");
+    }
+    Node current = start;
+    T old = current.getValue();
+    if(size() == 1){
+      start = null;
+      end = null;
+    }
+    else{
+      start = current.getNext();
+      start.setPrev(null);
+    }
+    size--;
+    return old;
   }
   private class Node{
     private T data;
