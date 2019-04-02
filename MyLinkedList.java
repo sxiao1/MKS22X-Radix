@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class MyLinkedList<T>{
+public class MyLinkedList<T extends Comparable<T>>{
   private int size;
   private Node start;
   private Node end;
