@@ -4,7 +4,7 @@ public class Radix{
     @SuppressWarnings("unchecked")
     MyLinkedList<Integer>[] bucket = new MyLinkedList[20];
     for(int i = 0; i < bucket.length; i++){
-      bucket[i] = new MyLinkedList<Integer>();
+      bucket[i] = new MyLinkedList<>();
     }
     int maxNum = 0;
     int maxInd = 0;
@@ -20,16 +20,20 @@ public class Radix{
         }
       }
     }
-    int temp1 = data[maxInd];
-    data[maxInd] = data[data.length -1];
-    data[data.length -1] = temp1;
-    int[] tempdata = new int[data.length];
-    for(int i = 0; i < data.length; i++){
-      int temp = data[i] % 10;
-      tempdata[i] = temp;
-    }
-    for(int i = 0; i < data.length; i++){
-      //data[i] = bucket.removeFront();
+    String maxStr = "" + maxNum;
+    int maxDigits = maxStr.length();
+    int index = 0;
+    while(index < maxDigits){
+      for(int i = 0; i < data.length; i++){
+        int temp = data[i];
+        int newTemp = temp;
+        if(index != 0){
+          newTemp = temp / ((int) Math.pow(10, index));
+        }
+        int num = newTemp % 10;
+        bucket[num].add(temp);
+      }
+      
     }
   }
 }
