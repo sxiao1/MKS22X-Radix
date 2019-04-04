@@ -3,8 +3,12 @@ public class Radix{
   public static void radixsort(int[] data){
     @SuppressWarnings("unchecked")
     MyLinkedList<Integer>[] bucket = new MyLinkedList[20];
-    for(int i = 0; i < bucket.length; i++){
-      bucket[i] = new MyLinkedList<>();
+    for(int i =0; i < bucket.length; i++){
+      bucket[i] = new MyLinkedList();
+    }
+    MyLinkedList tempB = new MyLinkedList();
+    for(int i = 0; i < data.length; i++){
+      tempB.add(data[i]);
     }
     int maxNum = 0;
     int maxInd = 0;
@@ -33,7 +37,10 @@ public class Radix{
         int num = newTemp % 10;
         bucket[num].add(temp);
       }
-      
+      for(int i = 0; i < data.length; i++){
+        //data[i] = (int)bucket[i];
+      }
+      index++;
     }
   }
 }
