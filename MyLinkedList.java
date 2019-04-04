@@ -71,6 +71,34 @@ public class MyLinkedList<T extends Comparable<T>>{
     }
     size++;
   }
+  public boolean addBeg(T num){
+    Node add = new Node(num);
+    if(size() == 0){
+      start = add;
+      end = add;
+      size ++;
+    }
+    else{
+      add.setNext(start);
+      start.setPrev(add);
+      start = add;
+      size++;
+    }
+    return true;
+  }
+  public boolean addEnd(T num){
+    Node add = new Node(num);
+    if(size() == 0){
+      start = add;
+      end = add;
+    }
+    else{
+      add.setPrev(end);
+      end.setNext(add);
+      end = add;
+    }
+    return true;
+  }
   public void extend(MyLinkedList<T> other){
     if(other.size() == 0){
       return;

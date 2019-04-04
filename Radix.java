@@ -6,9 +6,17 @@ public class Radix{
     for(int i =0; i < bucket.length; i++){
       bucket[i] = new MyLinkedList();
     }
-    MyLinkedList tempB = new MyLinkedList();
+    MyLinkedList<Integer> tempB = new MyLinkedList();
     for(int i = 0; i < data.length; i++){
       tempB.add(data[i]);
+    }
+    for(int i = 0; i <data.length; i++){
+      if(data[i] < 0){
+        bucket[9 + data[i] % 10].addBeg(data[i]);
+      }
+      else{
+        bucket[10 + data[i] % 10].addEnd(data[i]);
+      }
     }
     int maxNum = 0;
     int maxInd = 0;
@@ -37,10 +45,23 @@ public class Radix{
         int num = newTemp % 10;
         bucket[num].add(temp);
       }
+      tempB.clear();
       for(int i = 0; i < data.length; i++){
-        //data[i] = (int)bucket[i];
+        tempB.extend(bucket[i]);
       }
       index++;
+    }
+    for(int i = 0; i < data.length; i ++){
+      System.out.println(tempB.removeFront());
+      data[i] = tempB.removeFront();
+    }
+  }
+  public static void main(String[] args) {
+    int[] test = {23,4,55, 98, 80};
+    radixsort(test);
+    String newstr = "";
+    for(int i = 0; i < test.length; i++){
+      newstr += "" + test[i];
     }
   }
 }
