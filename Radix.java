@@ -36,13 +36,21 @@ public class Radix{
       }
       int digit = temp % 10;
       bucket[digit].add(num);
+      //System.out.println(digit);
+      //System.out.println(bucket[digit]);
 	    }
+      tempB.clear();
 	    for(int i=0;i<bucket.length;i++){
         //System.out.println(bucket[i]);
-		    data[i] = bucket[i].removeFront();
+        if(bucket[i].size() >0){
+		        tempB.extend(bucket[i]);
+        }
 	    }
 	    ind++;
 	   }
+     for(int i = 0; i < tempB.size(); i++){
+       data[i] = tempB.removeFront();
+     }
   }
 
     public static void main(String[] args) {
