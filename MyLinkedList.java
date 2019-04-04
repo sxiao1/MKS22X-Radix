@@ -9,6 +9,23 @@ public class MyLinkedList<T extends Comparable<T>>{
     end = null;
     size = 0;
   }
+  public T removeFront(){
+    if(size() == 0){
+      throw new IndexOutOfBoundsException("");
+    }
+    Node current = start;
+    T old = current.getValue();
+    if(size() == 1){
+      start = null;
+      end = null;
+    }
+    else{
+      start = current.getNext();
+      start.setPrev(null);
+    }
+    size--;
+    return old;
+  }
   public Node getNode(int index){
     Node beg = start;
     for(int i = 0; i < index; i++){
@@ -33,6 +50,12 @@ public class MyLinkedList<T extends Comparable<T>>{
     newstr += getNode(i).getValue();
     return newstr + "]";
   }
+  public T get(int index){
+	if (index < 0 || index >= size()){
+	    throw new IndexOutOfBoundsException();
+	}
+	return getNode(index).getValue();
+    }
   public boolean add(T newNode){
     Node add = new Node(newNode);
     if(size() == 0){
@@ -100,37 +123,20 @@ public class MyLinkedList<T extends Comparable<T>>{
     return true;
   }
   public void extend(MyLinkedList<T> other){
-    if(other.size() == 0){
-      return;
-    }
-    if(size() == 0){
-      start = other.start;
-    }
-    else{
-      end.setNext(other.start);
-      other.start.setPrev(end);
-    }
-    end = other.end;
-    size += other.size();
-    other.clear();
-    return;
-  }
-  public T removeFront(){
-    if(size() == 0){
-      throw new IndexOutOfBoundsException("");
-    }
-    Node current = start;
-    T old = current.getValue();
-    if(size() == 1){
-      start = null;
-      end = null;
-    }
-    else{
-      start = current.getNext();
-      start.setPrev(null);
-    }
-    size--;
-    return old;
+	   if(other.size() == 0){
+	      return;
+	     }
+	   if(size()==0){
+	      start=other.start;
+      }
+	   else{
+	      end.setNext(other.start);
+	      other.start.setPrev(end);
+	   }
+	   end=other.end;
+	   size+=other.size();
+     other.clear();
+     return;
   }
   private class Node{
     private T data;
